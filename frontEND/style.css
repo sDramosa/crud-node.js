@@ -1,0 +1,254 @@
+
+/* investigue y es posible declarar variables, lo cual utilizaré para la parte de los colores del sitio */
+:root {
+  --primario: #dbd1e9;
+  --secundario: #bf9fc8;
+  --lineal: #bfb8c9;
+  --lineal-2: #7660946e;
+  --botonazo: #a267a3;
+  --oscuro: #523f6d;
+  --peligro: #ef4444;
+  --editando: #3b82f6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #F8FAFC;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* MI FORMATO UNIVERSAL DE TARJETAS */
+/* así mantengo consistencia en mi UI */
+.tarjeta {
+    background-color: var(--primario);
+    padding: 1.5rem;
+    border: 2px solid var(--lineal);
+    border-radius: 6px;
+    /* box-shadow: 0 10px 25px #111e2934; no me convence la sombra */
+}
+
+.tarjeta h2 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 2px solid var(--lineal);
+    padding-bottom: 0.5rem;
+}
+
+/* tamaños y paddings especificos del login */
+#tarjeta-login {
+    padding: 2.5rem;
+    max-width: 400px;
+}
+
+#tarjeta-login h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+#tarjeta-login p {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: black;
+}
+
+/* recuadros INPUT formato */
+.form-group input {
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid var(--lineal-2);
+    background-color: var(--secundario);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+/* Efecto que no aporta funcionalidad real */
+/* pero si mucha USER EXPERIENCIE */
+.form-group input:focus {
+    background-color: white;
+    color: var(--botonazo);
+}
+
+.btn-submit:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--botonazo);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 0.5rem;
+}
+
+.error-mensaje {
+    margin-top: 1rem;
+    color: #f87171;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* BARRA DE NAVEGACION */
+.navbar {
+    background-color: #873683ae;
+    padding: 1rem 2rem;
+    display: flex; /* me permite poner el botón a lado*/
+    align-items: center; /* centro respecto al eje y*/
+    width: 100%; 
+
+}
+
+/* como mi contenedor es flex, si uso margin auto lo empuja hasta el otro lado y se ve más bonito*/
+.navbar h1 {
+    font-size: 1.4rem;
+    margin-right: auto;
+    
+}
+
+/*  */
+
+.main-container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.btn-secondary {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border: solid 2px white; /*añado borde*/
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    color: var(--peligro);
+}
+
+/* Grid de Tarjetas de Productos */
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1rem;
+}
+
+/* formato PRODUCTOS universal */
+.tarjeta-producto {
+    background-color: var(--secundario);
+    border: 2px solid var(--lineal-2);
+    border-radius: 6px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tarjeta-producto h3 {
+    margin-bottom: 0.5rem;
+}
+
+.tarjeta-producto p {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+}
+
+.precio-tag {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--oscuro);
+    margin: 0.5rem 0;
+}
+
+.btn-eliminar {
+    background-color: var(--peligro);
+    color: white;
+    font-weight: bold;
+    border: 2px solid white;
+    padding: 0.4rem;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+/* al pasar el cursor */
+.btn-eliminar:hover {
+    background-color: white;
+    color: var(--peligro);
+}
+
+.btn-editar {
+    width: 50%;
+    background-color: var(--editando);
+    color: white;
+    font-weight: bold;
+    border: 2px solid white;
+    padding: 0.4rem;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+/* al pasar el cursor */
+.btn-editar:hover {
+    background-color: white;
+    color: var(--editando);
+}
+
+.mensaje-alerta {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}

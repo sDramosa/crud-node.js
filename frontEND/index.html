@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <header class="navbar">
+        <h1>Catálogo<br>La Amethyst</h1>
+        <button id="btn-logout" class="btn-secondary">Cerrar<br>Sesión</button>
+    </header>
+
+    <div class="main-container">
+
+        <!-- Sección de Formulario para Agregar Producto -->
+        <section class="tarjeta" id="tarjeta-nueva">
+            <h2>Añadir nuevo producto</h2>
+            <form id="form-producto" class="form-grid">
+                <div class="form-group">
+                    <label for="nombre">Nombre del Producto</label>
+                    <input type="text" id="nombre" required placeholder="Ej. Piedra volcanica">
+                </div>
+
+                <div class="form-group">
+                    <label for="precio">Precio ($)</label>
+                    <input type="number" id="precio" step="0.01" required placeholder="Ej. 250.00">
+                </div>
+
+                <div class="form-group">
+                    <label for="stock">Cantidad en Stock</label>
+                    <input type="number" id="stock" required placeholder="Ej. 10">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="descripcion">Descripción</label>
+                    <input type="text" id="descripcion" required placeholder="Descripción breve del producto...">
+                </div>
+
+                <button type="submit" class="btn-submit full-width">Guardar Producto</button>
+            </form>
+            <div id="mensaje-form" class="mensaje-alerta"></div>
+        </section>
+
+        <!-- Sección de Lista de Productos -->
+        <section class="tarjeta">
+            <h2>Productos Disponibles</h2>
+            <div id="contenedor-productos" class="grid-productos">
+                <!-- Aquí JavaScript insertará las tarjetas de los productos -->
+            </div>
+        </section>
+
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
