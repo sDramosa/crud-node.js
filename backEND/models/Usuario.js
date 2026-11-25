@@ -16,7 +16,7 @@ const usuarioSchema = new mongoose.Schema({
     rol: { // Añadimos la propiedad o campo rol para poder distinguir a los usuarios
         type: String,
         enum: ['usuario', 'admin'],
-        default: 'usuario'
+        default: 'usuario' // Por defecto, todos los usuarios creados serán de tipo 'usuario'
     }
 }, {
     timestamps: true

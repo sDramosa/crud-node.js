@@ -8,8 +8,6 @@ export default function TarjetaProducto({ producto }) {
   const [cargando, setCargando] = useState(false);
   const [errorDivisa, setErrorDivisa] = useState('');
 
-  const inicial = (producto.nombre || 'P').trim().charAt(0).toUpperCase();
-
   async function manejarCambioMoneda(e) {
     const nuevaMoneda = e.target.value;
     setMoneda(nuevaMoneda);
@@ -32,59 +30,74 @@ export default function TarjetaProducto({ producto }) {
   }
 
   return (
-    <article className="tarjeta-producto">
-      <div className="post-header">
-        <div className="post-autor">
-          <span className="post-avatar" aria-hidden="true">{inicial}</span>
-          <div>
-            <div className="post-usuario">catalogo.store</div>
-            <div className="post-stock">Stock: {producto.stock ?? '—'}</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="post-media">
-        {producto.imagen ? (
-          <img src={producto.imagen} alt={producto.nombre} />
-        ) : (
-          <span className="post-sin-imagen">Sin foto disponible</span>
+    <article
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        gap: '0.75rem',
+        padding: '1rem',
+        borderRadius: '10px',
+        border: '1px solid var(--border)',
+        background: 'var(--bg)'
+      }}
+    >
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        {producto.imagen && (
+          <img
+            src={producto.imagen}
+            alt={producto.nombre}
+            style={{
+              width: '100%',
+              height: '200px',
+              objectFit: 'cover',
+              borderRadius: '8px',
+              display: 'block'
+            }}
+          />
         )}
-      </div>
 
-      <div className="post-acciones">
-        <span className="post-precio">${Number(producto.precio).toFixed(2)} MXN</span>
-        <span className="post-stock">#{String(producto._id || '').slice(-4)}</span>
-      </div>
+        <h3 style={{ margin: '0.25rem 0 0', color: 'var(--text-h)', fontSize: '1.1rem' }}>
+          {producto.nombre}
+        </h3>
 
-      <div className="post-cuerpo">
-        <p className="post-descripcion">
-          <strong className="post-titulo">{producto.nombre}</strong> {producto.descripcion}
+        <p style={{ fontSize: '0.92rem', color: 'var(--text)' }}>
+          {producto.descripcion}
         </p>
 
-        <div className="post-divisa">
-          <label htmlFor={`moneda-${producto._id}`}>Divisa:</label>
-          <select id={`moneda-${producto._id}`} value={moneda} onChange={manejarCambioMoneda}>
+        <p style={{ fontWeight: 700, color: 'var(--text-h)', fontSize: '1.05rem' }}>
+          ${Number(producto.precio).toFixed(2)} MXN
+        </p>
+
+        <p style={{ fontSize: '0.88rem', color: 'var(--text)' }}>
+          Stock: {producto.stock ?? '—'}
+        </p>
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+          <span style={{ fontSize: '0.9rem' }}>Divisa:</span>
+          <select value={moneda} onChange={manejarCambioMoneda}>
             <option value="MXN">MXN</option>
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>
             <option value="CAD">CAD</option>
           </select>
-
-          {cargando && <small>Calculando...</small>}
-          {errorDivisa && <small className="texto-error">{errorDivisa}</small>}
-          {conversion && !cargando && (
-            <small>
-              <strong>${conversion.precioConvertido} {conversion.monedaDestino}</strong>{' '}
-              <span>(Tasa: {conversion.tasaCambio})</span>
-            </small>
-          )}
         </div>
 
-        <div className="post-footer">
-          <Link to={`/producto/${producto._id}`} className="btn-post-detalle">
+        {cargando && <small>Calculando...</small>}
+        {errorDivisa && <small className="texto-error">{errorDivisa}</small>}
+        {conversion && !cargando && (
+          <small className="resultado-conversion">
+            <strong>${conversion.precioConvertido} {conversion.monedaDestino}</strong> (Tasa: {conversion.tasaCambio})
+          </small>
+        )}
+
+        <Link to={`/producto/${producto._id}`}>
+          <button type="button" style={{ width: '100%' }}>
             Ver detalle
-          </Link>
-        </div>
+          </button>
+        </Link>
       </div>
     </article>
   );

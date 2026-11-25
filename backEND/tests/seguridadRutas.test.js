@@ -1,8 +1,7 @@
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+require('dotenv').config({ quiet: true });
 
-// Asegúrate de tener JWT_SECRET definido en tu entorno de pruebas
 process.env.JWT_SECRET = process.env.JWT_SECRET || 'secreto_de_prueba';
 
 jest.mock('../models/Producto', () => {

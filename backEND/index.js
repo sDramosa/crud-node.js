@@ -3,7 +3,7 @@ const cors = require('cors');
 const conectarDB = require('./database/db');
 
 // Primero cargamos las variables de entorno desde mi archivo .env
-require('dotenv').config();
+require('dotenv').config({ quiet: true });
 
 // Inicializar Express
 const app = express();
