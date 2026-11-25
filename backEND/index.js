@@ -18,15 +18,22 @@ app.use(cors()); // Permite que mi página web se comunique con este servidor si
 
 const productosRutas = require('./routes/productos'); 
 const authRutas = require('./routes/auth'); 
+const manejadorErrores = require('./middlewares/manejadorErrores');
 
 app.use('/api/productos', productosRutas);
 app.use('/api/auth', authRutas);
 
-// Llamamos a conectar a MongoDB
-conectarDB();
+// Middleware de errores
+app.use(manejadorErrores);
 
 // Encendemos el servidor en el puerto definido en las variables de entorno o en el puerto 3000 por defecto
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en: http://localhost:${PORT}`);
-});
+
+if (process.env.NODE_ENV !== 'test') {
+  conectarDB();
+  app.listen(PORT, () => {
+    console.log(`Servidor corriendo en: http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

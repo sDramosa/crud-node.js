@@ -24,4 +24,17 @@ const verificarToken = (req, res, next) => {
     }
 };
 
+// Al momento de validar credenciales se limitara a aquellos usuarios que no tengan los roles autorizados
+function autorizarRol(...rolesPermitidos) {
+  return (req, res, next) => {
+    if (!req.usuario || !rolesPermitidos.includes(req.user.rol)) {
+      return res.status(403).json({
+        mensaje: 'Acceso denegado: no tienes permisos suficientes para esta acción.'
+      });
+    }
+    next();
+  };
+}
+
+module.exports = autorizarRol;
 module.exports = verificarToken;

@@ -11,6 +11,12 @@ const usuarioSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'La contraseña es obligatoria']
+    },
+    // Modificaciones segunda fase
+    rol: { // Añadimos la propiedad o campo rol para poder distinguir a los usuarios
+        type: String,
+        enum: ['usuario', 'admin'],
+        default: 'usuario'
     }
 }, {
     timestamps: true

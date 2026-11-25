@@ -51,10 +51,12 @@ router.post('/login', async (req, res) => {
 
         // Creamos el Token (JWT) usando la clave secreta de nuestro archivo .env
         // El token expirará en 1 hora por seguridad
+
+        // Ahora también al ingresar se pasa el rol del usuario
         const token = jwt.sign(
-            { id: usuario._id, email: usuario.email }, 
-            process.env.JWT_SECRET, 
-            { expiresIn: '1h' }
+            { id: usuario._id, rol: usuario.rol },
+            process.env.JWT_SECRET,
+            { expiresIn: '2h' }
         );
 
         res.json({
