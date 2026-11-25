@@ -166,6 +166,8 @@ export default function AdminProductosPage() {
             onChange={manejarCambio}
           />
 
+          // Informa al navegador que el campo de precio es obligatorio y debe ser un número entero mayor o igual a 0, 
+              lo cual coincide con la validación en el middleware 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
             <input
               type="number"
