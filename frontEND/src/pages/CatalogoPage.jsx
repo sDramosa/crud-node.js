@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { productosApi } from '../services/api';
-import TarjetaProducto from '../components/tarjetaProducto';
+import TarjetaProducto from '../components/TarjetaProducto';
 
 export default function CatalogoPage() {
   const [productos, setProductos] = useState([]);
